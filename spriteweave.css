@@ -1,0 +1,321 @@
+
+/*----------------Screen--------------------*/
+
+body {
+	margin:0;
+	overflow:hidden;
+}
+
+.hidden-controls {
+	display:none;
+}
+#SpriteWeave, #menu {
+	position:absolute;
+	left:0;
+	top:0;
+	display:grid;
+}
+#SpriteWeave {
+	grid-template-columns: 100fr 1fr;
+	width:100vw;
+	height:100vh;
+}
+#menu {
+	grid-template-rows: auto auto;
+	max-height:100vh;
+}
+#ui {
+	background-color:var(--canvas-back-color);
+	background-image:var(--canvas-back-pattern);
+	background-repeat:repeat;
+	background-position:center;
+}
+#ui, #menu {
+	position:relative;
+}
+#ui-menu {
+	pointer-events:none;
+}
+#ui-menu nav {
+	pointer-events:auto;
+}
+#ui-menu, #main-canvas, #preview-canvas {
+	position:absolute;
+	left:0;
+	top:0;
+	padding:0;
+	margin:0;
+}
+#ui-menu, #main-canvas {
+	width:100%;
+	height:100%;
+}
+#preview-clip {
+	position:absolute;
+	left:0;
+	bottom:0;
+	width:100px;
+	height:100px;
+	padding:0;
+	margin:5px;
+	box-shadow:0 0 0 2px black inset,
+		0 0 5px 0 black;
+	overflow:hidden;
+}
+#top {
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	min-height:1rem;
+}
+#right {
+	position:absolute;
+	right:0;
+	top:0;
+	height:100%;
+	min-width:1rem;
+}
+#tree, #config {
+	min-width:15rem;
+	overflow:auto;
+}
+#tree {
+	background-color: var(--button-back);
+}
+#config {
+	background-color: var(--button-back-distinct-2);
+}
+
+nav {
+	display:inline-block;
+	--menu-padding: 0.5rem;
+	--button-padding: 0.5rem;
+}
+
+/*----------------Icon-----------------------*/
+.icon {
+	width:1.5rem;
+	height:1.5rem;
+	background-size:contain;
+	display:inline-block;
+}
+
+/*------------The Folding Tree---------------*/
+.tree > [draggable] {
+	user-select: none;
+}
+.tree > label.drop:before {
+	content: " ";
+	position:absolute;
+	left:0;
+	top:-0.25rem;
+	width:100%;
+	height:4px;
+	background-color: rgb(128,200,255);
+	border-radius:2px;
+}
+.tree.head {
+	padding-left:1.5rem;
+	padding-right:0;
+}
+.tree {
+	display:flex;
+	flex-direction:column;
+	justify-content:flex-start;
+	align-items:stretch;
+	position:relative;
+	background-color:var(--button-back);
+	color:var(--button-text);
+	line-height:1.5rem;
+	padding:0.25rem 1rem;
+}
+.tree > label.knob {
+	position:absolute;
+	line-height:1.35rem;
+	left:0.5rem;
+	top:0.2rem;
+	padding:0 0.5rem;
+	padding-bottom:0.25rem;
+}
+.tree > label.stub {
+	padding-left:0;
+	left:-1rem;
+}
+.tree > label.stub.live {
+	padding-left:0.5rem;
+	padding-right:0.5rem;
+	left:-1.5rem;
+}
+.tree > label {
+	position:relative;
+	cursor:default;
+	left:0rem;
+	padding-right:1rem;
+	padding-left:0.5rem;
+	border-radius: 1rem;
+}
+.tree.head > label {
+	padding-left:1.25rem;
+	left:-2rem;
+}
+.tree > .tree {
+	padding-left:2rem;
+	padding-right:0;
+	background-color:unset;
+}
+.tree > .tree > label.knob:hover,
+.tree > .tree > label.live:hover,
+.tree > .tree > label.deep:hover {
+	background-color: var(--button-back-emphasis);
+	cursor:pointer;
+}
+.tree.furl > .tree { display:none; }
+.tree > .tree:after,
+.tree > .tree:before {
+	pointer-events:none;
+	z-index:1000;
+	content:" ";
+	font-family: 'Courier New', Courier, monospace;
+	font-size:1.5rem;
+	line-height:2rem;
+	text-align:right;
+	background-size: 2rem 2rem;
+	position:absolute;
+	left:-1rem;
+	width:2.7rem;
+}
+.tree > .tree:before { 
+	background-image:var(--tree-T);
+	background-position: left top;
+	background-repeat:no-repeat;
+	height:2rem;
+	top:0;
+}
+.tree > .tree:after {
+	background-image:var(--tree-I);
+	background-position: left top;
+	background-repeat:repeat-y;
+	height:calc(100% - 2rem);
+	top:2rem;
+}
+.tree > .tree:last-child:after { 
+	background-image:unset;
+}
+.tree > .tree:last-child:before {
+	background-image:var(--tree-L);
+}
+
+/*------------The Configuration Menus---------------*/
+.flat { 
+	flex-direction:row;
+	flex-wrap:wrap;
+	padding-right:0;
+}
+ul.flat > li { 
+	margin-right:var(--menu-padding); 
+}
+.tall, .thin { 
+	flex-direction:column; 
+	padding-bottom:0;
+}
+ul.tall > li, ul.thin > li { 
+	margin-bottom:var(--menu-padding); 
+}
+ul.tall, div.dialogue {
+	background-color: var(--button-back-distinct-2);
+}
+ul, div.dialogue, ul.tall > li {
+	margin:0;
+	list-style: none;
+	display:flex;
+	flex-wrap:nowrap;
+	justify-content:center;
+	align-items:stretch;
+	padding:var(--menu-padding);
+}
+.tall li {
+	min-width:10rem;
+}
+.tall li, .thin li {
+	border-radius: 2rem;
+	padding:0;
+	flex-direction:row;
+	justify-content:stretch !important;
+}
+li.tall, li.tall > label,
+li.thin, li.thin > label {
+	text-align:center;
+}
+li > input:first-child {
+	width:calc( 100% - ( var(--button-padding) * 2 ));
+}
+li > input {
+	width:25%;
+	flex-grow:0;
+	border:0;
+	font-size:1rem;
+	font-family: inherit;
+}
+li > div {
+	width:100%;
+}
+li > label, li > a, li > select {
+	flex-grow:1;
+}
+li > a, li > input, li > label, li > select {
+	display:block;
+	padding:var(--button-padding);
+	text-align:center;
+	text-decoration: none;
+	color:var(--button-text);
+	background-color:var(--button-back);
+	transition: background-color 0.1s, color 0.1s, border-radius 0.1s, box-shadow 0.1s;
+	border-radius: 2rem;
+}
+li > a {
+	display:flex;
+	flex-direction:row;
+	justify-content:center;
+	align-items:center;
+}
+li > a > label,
+li > a > .icon {
+	margin-right:0.5rem;
+}
+li > a > label:first-child,
+li > a > .icon:first-child {
+	margin-left:0.5rem;
+}
+li > a > label:first-child:last-child,
+li > a > .icon:first-child:last-child {
+	margin-left:0;
+	margin-right:0;
+}
+li > label {
+	background-color: unset;
+	color: var(--button-text-distinct-2);
+	text-align:left;
+	border-radius: 0;
+}
+li > a:hover, li > input:hover {
+	background-color:var(--button-back-emphasis);
+	cursor:pointer;
+} 
+li > input[type=text], li > select {
+	background-color:var(--button-back-distinct-1);
+	border:0;
+}
+li > input[type=text]:hover, li > input[type=text]:focus,
+li > select:hover {
+	cursor:text;
+	background-color: var(--type-back);
+	color: var(--type-text);
+	box-shadow:0 0 0.25rem 0 var(--type-border) inset,
+		0 0 0 0.125rem var(--type-border) inset;
+	border-radius:0;
+}
+
+div.dialogue {
+	text-align: center;
+}

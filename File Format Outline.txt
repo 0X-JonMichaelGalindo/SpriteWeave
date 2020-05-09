@@ -1,0 +1,98 @@
+Encoded as a JSON object
+
+Image names must be unique per weave-file (enforced).
+No other name enforcement is necessary.
+
+sprite-weave-file.json = {
+	"sprite-weave-version": "1.0",
+	"name": "File-Name",
+	"sheets": [
+		{ "name": "sheet-name-1",
+			"poses": [
+				{ "name": "stand-front",
+					"frames": [
+						{ "name": "stand-front-1",
+							"frame-duration": 1,
+							"layers": [
+								{
+									//A meta-layer
+									"name": "test"
+									"layers": [
+										{
+											"name": "test"
+											"image": {
+												"name": "hand"
+												"cell": "south-open"
+											},
+											"position": {
+												"x": 0, "y": 0,
+												"mirror": {
+													"horizontal": false,
+													"vertical": false
+												},
+												"rotate": 0
+											}
+										}
+									],
+								},
+								{
+									//An image-layer
+									"name": "test"
+									"image": {
+										"name": "head"
+										"cell": "south-neutral"
+									},
+									"position": {
+										"x": 0, "y": 0,
+										"mirror": {
+											"horizontal": false,
+											"vertical": false
+										},
+										"rotate": 0
+									}
+								},
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"images": [
+		{
+			"name": "head",
+			"cells": [
+				{
+					"name": "south-normal",
+					"rect": {
+						"x": 0, "y": 0,
+						"x2": 0, "y2": 0,
+					},
+				}
+			],
+			"materials": [
+				{
+					"name": "skin",
+					"color": {
+						"r": 255,
+						"g": 255,
+						"b": 255
+					},
+					"shades": [
+						{
+							"r": 250,
+							"g": 250,
+							"b": 250
+						},
+						{
+							"r": 240,
+							"g": 240,
+							"b": 240
+						}
+					]
+				}
+			],
+			"data": "..."
+		}
+	]
+}

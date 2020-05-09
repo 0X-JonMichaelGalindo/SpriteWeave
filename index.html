@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SpriteWeave</title>
+		<link rel="stylesheet" type="text/css" href="spriteweave-theme-carbon.css">
+		<link rel="stylesheet" type="text/css" href="spriteweave.css">
+		<script type="text/javascript" src="data/test-data.js"></script>
+		<script type="text/javascript"
+			src="limn.beta.0.2.js"
+			global-name="SpriteWeave"
+			source-directory="source"></script>
+		<script type="text/javascript">
+			window.onload = async () => {
+				window.testData = JSON.parse( window.testDataString );
+				const init = await SpriteWeave( "loop/init" );
+				init();
+
+				/*
+				const menuHolder = document.getElementById( "config" ),
+					makeStateMenu = await SpriteWeave( "dom/menu.get.state" ),
+					makeToolsMenu = await SpriteWeave( "dom/menu.get.tools" ),
+					makeSheetMenu = await SpriteWeave( "dom/menu.get.sheet" ),
+					makePoseMenu = await SpriteWeave( "dom/menu.get.pose" ),
+					makeFrameMenu = await SpriteWeave( "dom/menu.get.frame" ),
+					makeMetaLayerMenu = await SpriteWeave( "dom/menu.get.metalayer" ),
+					makeImageLayerMenu = await SpriteWeave( "dom/menu.get.imagelayer" ),
+					makeCellMenu = await SpriteWeave( "dom/menu.get.cell" ),
+					makeImageMenu = await SpriteWeave( "dom/menu.get.image" );
+				document.getElementById( 
+					"top" ).appendChild( 
+						makeStateMenu().element
+					);
+				document.getElementById( 
+					"right" ).appendChild( 
+						makeToolsMenu().element
+					);
+				//menuHolder.appendChild( makeSheetMenu().element );
+				//menuHolder.appendChild( makePoseMenu().element );
+				//menuHolder.appendChild( makeFrameMenu().element );
+				//menuHolder.appendChild( makeMetaLayerMenu().element );
+				menuHolder.appendChild( makeImageLayerMenu().element );
+				//menuHolder.appendChild( makeCellMenu().element );
+				//menuHolder.appendChild( makeImageMenu().element );
+
+				const makeTree = await SpriteWeave( "dom/tree.add" );
+				const tree = makeTree( 
+					{
+						"label":"Root",
+						"nodes": [
+							{
+								"label":"thing1",
+								"id":"Testing",
+								"drag": "sheet",
+								"nodes": [
+									{ "id":"a1", "label":"thing3", "drag": "frame" },
+									{ "id":"a2", "label":"thing5", "drag": "frame", "click":true },
+									{ "id":"a3", "label":"thing6", "drag": "frame" },
+								]
+							},
+							{
+								"label":"thing2",
+								"id":"Testing2",
+								"click": true,
+								"drag": "sheet",
+								"nodes": [
+									{ "id":"a4", "label":"thing4", "drag": "frame" },
+									{ "id":"a5", "label":"thing7", "drag": "frame" },
+								]
+							},
+						]
+					},
+					id => console.log( id )
+				);
+
+				document.getElementById( "tree" ).appendChild( tree );
+				*/
+			}
+		</script>
+	</head>
+	<body>
+		<div class="hidden-controls">
+			<input type="file" id="json-uploader" accept=".json" />
+			<input type="file" id="png-uploader" accept=".png" />
+			<a id="downloader"></a>
+		</div>
+
+		<div id="SpriteWeave">
+			<div id="ui">
+				<canvas id="main-canvas"></canvas>
+				<div id="preview-clip">
+					<canvas id="preview-canvas"></canvas>
+				</div>
+				<div id="ui-menu">
+					<div id="top"></div>
+					<div id="right"></div>
+				</div>
+			</div>
+			<div id="menu">
+				<div id="tree"></div>
+				<div id="config"></div>
+			</div>
+		</div>
+
+		<nav id="demo-tree">
+		</nav>
+
+		<!--Confirm Cell Delete-->
+		<!--
+		<nav id="delete-cell">
+			<div class="dialogue tall">
+				DELETE IMAGE {name}<br>
+				(CAN'T UNDO)<br>
+				Deleting this cell will delete {#} dependent layers!<br>
+				<div class="tree">
+					<i>Show only affected(s): s > p > f > {l!} </i>
+				</div>
+				<nav id="confirm-delete-cell">
+					<ul class="tall">
+						<li><a href="#">Cancel</a></li>
+						<li><a class="warn" href="#">Delete (Can't Undo!)</a></li>
+					</ul>
+				</nav>
+			</div>
+		</nav>
+	-->
+	</body>
+</html>

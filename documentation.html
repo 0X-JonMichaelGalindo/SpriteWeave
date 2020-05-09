@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SpriteWeave</title>
+		<!--link rel="stylesheet" type="text/css" href="spriteweave-theme-carbon.css"-->
+		<!--link rel="stylesheet" type="text/css" href="spriteweave.css"-->
+		<script type="text/javascript" src="data/test-data.js"></script>
+		<script type="text/javascript"
+			src="limn.beta.0.2.js"
+			global-name="SpriteWeave"
+			source-directory="source"></script>
+		<script type="text/javascript">
+			window.onload = async () => {
+				const init = await SpriteWeave( "loop/init" );
+				//await init();
+				
+				//SpriteWeave.Explore( document.body, "loop/init" );
+				SpriteWeave.Explore( document.body, "loop/world.get" );
+			}
+		</script>
+	</head>
+	<body>
+		
+		<div class="hidden-controls">
+			<input type="file" id="json-uploader" accept=".json" />
+			<input type="file" id="png-uploader" accept=".png" />
+			<a id="downloader"></a>
+		</div>
+
+		<div id="SpriteWeave">
+			<div id="ui">
+				<canvas id="main-canvas"></canvas>
+				<div id="preview-clip">
+					<canvas id="preview-canvas"></canvas>
+				</div>
+				<div id="ui-menu">
+					<div id="top"></div>
+					<div id="right"></div>
+				</div>
+			</div>
+			<div id="menu">
+				<div id="tree"></div>
+				<div id="config"></div>
+			</div>
+		</div>
+
+		<nav id="demo-tree">
+		</nav>
+	</body>
+</html>
